@@ -1,3 +1,6 @@
+<?php
+$locale = LaravelLocalization::getCurrentLocale();
+?>
 <!DOCTYPE html>
 <html lang="{{ LaravelLocalization::getCurrentLocale() }}">
 
@@ -65,7 +68,7 @@
                             <div class="upper-column info-box">
                                 <div class="icon-box"><span class="flaticon-technology"></span></div>
                                 <ul>
-                                    <li><strong>599 - 555 - 246</strong></li>
+                                    <li><strong>(+995) - 599 - 555 - 246</strong></li>
                                     <li>geo@jutagroup.ge</li>
                                 </ul>
                             </div>
@@ -105,18 +108,17 @@
 
                             <div class="navbar-collapse collapse clearfix">
                                 <ul class="navigation clearfix">
-                                    <li class="current"><a href="{{ route('clientIndex') }}">@lang('menu.index')</a>
+                                    <li class="{{ request()->is($locale . '') ? 'current' : '' }}"><a
+                                            href="{{ route('clientIndex') }}">@lang('menu.index')</a>
                                     </li>
-                                    <li><a href="#">@lang('menu.blog')</a>
-                                        {{-- <ul>
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="blog-grid.html">Blog Grid</a></li>
-                                                <li><a href="blog-details.html">Blog Details</a></li>
-                                            </ul> --}}
+                                    <li class=""><a href="#">@lang('menu.blog')</a>
                                     </li>
 
-                                    <li><a href="about-us.html">@lang('menu.about')</a></li>
-                                    <li><a href="{{ route('clientContact') }}">@lang('menu.contact')</a></li>
+                                    <li class="{{ request()->is($locale . '/about') ? 'current' : '' }}"><a
+                                            href="{{ route('clientAbout') }}">@lang('menu.about')</a></li>
+                                    <li class="{{ request()->is($locale . '/contact') ? 'current' : '' }}"><a
+                                            href="{{ route('clientContact') }}">@lang('menu.contact')</a>
+                                    </li>
                                 </ul>
                             </div>
                         </nav>
@@ -153,13 +155,13 @@
 
                             <div class="navbar-collapse collapse clearfix">
                                 <ul class="navigation clearfix">
-                                    <li><a href="{{ route('clientIndex') }}">Home</a>
+                                    <li><a href="{{ route('clientIndex') }}">@lang('menu.index')</a>
                                     </li>
-                                    <li><a href="#">Blog</a>
+                                    <li><a href="#"></a>
                                     </li>
 
-                                    <li><a href="about-us.html">About</a></li>
-                                    <li><a href="{{ route('clientContact') }}">Contact</a></li>
+                                    <li><a href="{{ route('clientAbout') }}">@lang('menu.about')</a></li>
+                                    <li><a href="{{ route('clientContact') }}">@lang('menu.contact')</a></li>
                                 </ul>
                             </div>
                         </nav><!-- Main Menu End-->
@@ -194,11 +196,10 @@
                                             space probes and we will our our way make all come true.</div>
 
                                         <ul class="contact-info">
-                                            <li><span class="icon flaticon-pin"></span> 3A07, Serif St, Orleans,
-                                                USA-170A</li>
-                                            <li><span class="icon flaticon-technology"></span> +1 - 000 - 8990 - 1560
+                                            <li><span class="icon flaticon-pin"></span>@lang('menu.address')</li>
+                                            <li><span class="icon flaticon-technology"></span>(+995) - 599 - 555 - 246
                                             </li>
-                                            <li><span class="icon flaticon-mail-2"></span> support@domain.com</li>
+                                            <li><span class="icon flaticon-mail-2"></span> geo@jutagroup.ge</li>
                                         </ul>
 
                                     </div>

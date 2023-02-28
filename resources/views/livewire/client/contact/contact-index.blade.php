@@ -12,7 +12,7 @@
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <ul class="bread-crumb clearfix">
-                            <li><a href="index.html">@lang('menu.index')</a></li>
+                            <li><a href="{{ route('clientIndex') }}">@lang('menu.index')</a></li>
                             <li class="active">{{ $metaTitle }}</li>
                         </ul>
                     </div>
@@ -91,18 +91,30 @@
                     <div class="row clearfix">
                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
                             <input type="text" wire:model="username" placeholder="@lang('placeholders.first_name') *">
+                            @error('username')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="form-group col-md-6 col-sm-6 col-xs-12">
                             <input type="email" wire:model="email" placeholder="@lang('placeholders.email') *">
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                            <input type="text" wire:model="subject" placeholder="@lang('placeholders.email') *">
+                            <input type="text" wire:model="subject" placeholder="@lang('placeholders.subject') *">
+                            @error('subject')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12">
                             <textarea wire:model="message" placeholder="@lang('placeholders.message') *"></textarea>
+                            @error('message')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12"><button type="submit"

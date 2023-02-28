@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\NewsCategoriesController;
 
 use App\Http\Controllers\Admin\ProductCategoriesController;
 use App\Http\Controllers\client\IndexController as ClientIndexController;
+use App\Http\Livewire\Client\About\AboutIndex;
 use App\Http\Livewire\Client\Contact\ContactIndex;
 use App\Http\Livewire\Client\Home\Index;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -52,6 +53,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
     Route::get('/', Index::class)->name('clientIndex');
     Route::get('/contact', ContactIndex::class)->name('clientContact');
+    Route::get('/about', AboutIndex::class)->name('clientAbout');
 });
 
 Route::get('/admin/login', [LoginController::class, 'index'])->middleware('AdminLogin')->name('LoginPageAdmin');
