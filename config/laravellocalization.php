@@ -273,9 +273,9 @@ return [
         //'bo'          => ['name' => 'Tibetan',                'script' => 'Tibt', 'native' => 'པོད་སྐད་', 'regional' => 'bo_IN'],
         //'dz'          => ['name' => 'Dzongkha',               'script' => 'Tibt', 'native' => 'རྫོང་ཁ', 'regional' => 'dz_BT'],
         //'my'          => ['name' => 'Burmese',                'script' => 'Mymr', 'native' => 'မြန်မာဘာသာ', 'regional' => 'my_MM'],
-        'ka'          => ['name' => 'Georgian',               'script' => 'Geor', 'native' => 'GEO', 'regional' => 'ka_GE'],
+        'ka' => ['name' => 'Georgian',               'script' => 'Geor', 'native' => 'GEO', 'regional' => 'ka_GE'],
 
-        'en'          => ['name' => 'English',                'script' => 'Latn', 'native' => 'ENG', 'regional' => 'en_GB'],
+        'en' => ['name' => 'English',                'script' => 'Latn', 'native' => 'ENG', 'regional' => 'en_GB'],
         //'byn'         => ['name' => 'Blin',                   'script' => 'Ethi', 'native' => 'ብሊን', 'regional' => 'byn_ER'],
         //'tig'         => ['name' => 'Tigre',                  'script' => 'Ethi', 'native' => 'ትግረ', 'regional' => 'tig_ER'],
         //'ti'          => ['name' => 'Tigrinya',               'script' => 'Ethi', 'native' => 'ትግርኛ', 'regional' => 'ti_ET'],

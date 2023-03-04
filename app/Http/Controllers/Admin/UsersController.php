@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Excel;
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Exports\UsersExport;
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use Excel;
+use Illuminate\Http\Request;
 
 class UsersController extends BaseController
 {

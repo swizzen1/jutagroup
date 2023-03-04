@@ -34,7 +34,7 @@ class YouthExportCompanies implements FromCollection, WithHeadings
      *
      * @return response()
      */
-    public function headings() :array
+    public function headings(): array
     {
         return [
             'Name',
@@ -46,7 +46,7 @@ class YouthExportCompanies implements FromCollection, WithHeadings
             'Linkedin',
             'Web',
             'Type',
-            'Registration Date'
+            'Registration Date',
         ];
     }
 }

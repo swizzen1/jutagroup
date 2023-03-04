@@ -18,20 +18,22 @@ class UserLog extends Model
         'action',
     ];
 
-    public function admin(){
+    public function admin()
+    {
         return $this->belongsTo('App\Models\Admin');
     }
 
-    public function getRelateModelUrl($id){
+    public function getRelateModelUrl($id)
+    {
         $model = static::find($id);
-        $route = 'Edit' . $model->model_name . 's';
+        $route = 'Edit'.$model->model_name.'s';
 
-        if(substr($model->model_name, -1) == 'y'){
-            $route = 'Edit' . substr_replace($model->model_name,"",-1) . 'ies';
-        }elseif(substr($model->model_name, -1) == 's'){
-            $route = 'Edit' . $model->model_name;
+        if (substr($model->model_name, -1) == 'y') {
+            $route = 'Edit'.substr_replace($model->model_name, '', -1).'ies';
+        } elseif (substr($model->model_name, -1) == 's') {
+            $route = 'Edit'.$model->model_name;
         }
-        
-        return str_replace(' ', '',$route);
+
+        return str_replace(' ', '', $route);
     }
 }

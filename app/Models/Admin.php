@@ -2,43 +2,41 @@
 
 namespace App\Models;
 
-use Session;
 use App\Traits\ActionLog;
 use Illuminate\Database\Eloquent\Model;
+use Session;
 
-class Admin extends Model {
-
+class Admin extends Model
+{
     use ActionLog;
-    
-    protected $fillable = array('name', 'surname', 'password', 'email','role');
+
+    protected $fillable = ['name', 'surname', 'password', 'email', 'role'];
 
     public static function isLogin()
     {
-        if (!Session::has('admin')) 
-        {
+        if (! Session::has('admin')) {
             return false;
         }
-        
+
         $idAdmin = Session::get('admin');
         $AdminExist = Admin::find($idAdmin);
 
-        if (!$AdminExist) 
-        {
+        if (! $AdminExist) {
             return false;
         }
 
         return true;
     }
 
-    public static function getInfo() 
+    public static function getInfo()
     {
         $idAdmin = Session::get('admin');
         $AdminExist = Admin::find($idAdmin);
 
         return $AdminExist;
     }
-    
-    public static function addAdmin($request) 
+
+    public static function addAdmin($request)
     {
         $NewAdmin = new Admin();
         $NewAdmin->name = $request->name;
@@ -47,47 +45,44 @@ class Admin extends Model {
         $NewAdmin->email = $request->email;
         $NewAdmin->password = sha1($request->password);
 
-        if ($NewAdmin->save()) 
-        {
+        if ($NewAdmin->save()) {
             $NewAdmin::storeLog($NewAdmin, __CLASS__, 'Create');
+
             return true;
         }
-        
-        return false;        
+
+        return false;
     }
-    
-    public static function UpdateAdmin($request, $admin) 
+
+    public static function UpdateAdmin($request, $admin)
     {
-        if ($request->password) 
-        {
+        if ($request->password) {
             $update = $admin->update([
                 'name' => $request->name,
                 'surname' => $request->surname,
                 'email' => $request->email,
                 'password' => sha1($request->password),
-                'role' => $request->role ? $request->role : 1
+                'role' => $request->role ? $request->role : 1,
             ]);
-        } 
-        else 
-        {
+        } else {
             $update = $admin->update([
                 'name' => $request->name,
                 'surname' => $request->surname,
                 'email' => $request->email,
-                'role' => $request->role ? $request->role : 1
+                'role' => $request->role ? $request->role : 1,
             ]);
         }
 
-        if ($update) 
-        {
+        if ($update) {
             $admin::storeLog($admin, __CLASS__, 'Update');
+
             return true;
         }
-        
-        return false;        
+
+        return false;
     }
-    
-    public static function GetAll() 
+
+    public static function GetAll()
     {
         return Admin::all();
     }

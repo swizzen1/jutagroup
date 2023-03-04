@@ -29,4 +29,3 @@ return [
     'update' => 'Update',
     'enter_coupon_code' => 'Enter your coupon code',
 ];
-

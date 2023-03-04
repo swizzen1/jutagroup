@@ -34,7 +34,7 @@ class YouthExport implements FromCollection, WithHeadings
      *
      * @return response()
      */
-    public function headings() :array
+    public function headings(): array
     {
         return [
             'Name',
@@ -43,7 +43,7 @@ class YouthExport implements FromCollection, WithHeadings
             'Gender',
             'ID',
             'Phone',
-            'Birth date'
+            'Birth date',
         ];
     }
 }

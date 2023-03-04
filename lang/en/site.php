@@ -100,5 +100,5 @@ return [
     'date' => 'Date',
     'status' => 'Status',
     'keyword' => 'Keyword',
-    'finished' => 'Finished'
+    'finished' => 'Finished',
 ];

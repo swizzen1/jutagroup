@@ -2,10 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
 use DB;
 use Session;
-use Closure;
-use Illuminate\Routing\Route;
 
 class CheckRole
 {
@@ -13,7 +12,6 @@ class CheckRole
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -28,7 +26,7 @@ class CheckRole
 
         if ($role == 2) {
             $available_actions = json_decode(DB::table('configurations')->first()->standard_admin_actions);
-        } else if ($role == 3) {
+        } elseif ($role == 3) {
             $available_actions = json_decode(DB::table('configurations')->first()->moderator_admin_actions);
         }
 
@@ -38,8 +36,7 @@ class CheckRole
             array_push($available_actions, 'update');
         }
 
-        if (!in_array($action, $available_actions)) {
-
+        if (! in_array($action, $available_actions)) {
             if ($request->ajax()) {
                 return response()->json(['status' => 5]);
             }

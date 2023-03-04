@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'sk' => 'ID',
     'who' => 'For who',
     'first_name' => 'Name',
@@ -19,7 +19,7 @@ return array(
     'any_quests' => 'For questions please contact us at number:',
     'vat' => 'The amount is provided including VAT (18%)',
     'thnks' => 'Thanks for your collaboration!',
-    
+
     'order' => 'Order',
     'date' => 'Date',
-);
+];

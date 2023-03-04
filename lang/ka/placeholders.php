@@ -25,8 +25,7 @@ return [
     'password' => 'პაროლი',
     'new_password' => 'ახალი პაროლი',
     'old_password' => 'ძველი პაროლი',
-    're_password' => 'გაიმეორეთ პაროლი',   
+    're_password' => 'გაიმეორეთ პაროლი',
     'update' => 'განახლება',
     'enter_coupon_code' => 'ფასდაკლების კოდი',
 ];
-

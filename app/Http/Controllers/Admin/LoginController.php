@@ -2,37 +2,31 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-
-use DB;
-use Session;
 use App\Models\Admin;
 use App\Models\Information;
-use App\Models\User;
-use Exception;
+use DB;
 use Illuminate\Http\Request;
-use Throwable;
+use Session;
 
 class LoginController extends BaseController
 {
     public function index()
     {
-
         $information = Information::getItemInfo(3, $this->configuration->admin_lang);
-        return view('Administrator.login.index',  compact('information'));
+
+        return view('Administrator.login.index', compact('information'));
     }
 
     public function singin(Request $request)
     {
-
         $this->validate($request, [
             'password' => 'required',
-            'email' => 'required|email'
+            'email' => 'required|email',
         ]);
 
         $admin = Admin::where('email', $request->email)->where('password', sha1($request->password))->first();
 
-        if (!$admin) {
+        if (! $admin) {
             return redirect()->back();
         }
 
@@ -41,10 +35,10 @@ class LoginController extends BaseController
 
         Session::put('admin', $admin);
         DB::table('changelogs')->insert([
-            'user' => $admin->name . ' ' . $admin->surname,
+            'user' => $admin->name.' '.$admin->surname,
             'ip' => $_SERVER['REMOTE_ADDR'],
             'user_agent' => $request->header('User-Agent'),
-            'time' => date('Y-m-d H:i:s')
+            'time' => date('Y-m-d H:i:s'),
         ]);
 
         return redirect()->route('AdminMainPage');
@@ -54,6 +48,7 @@ class LoginController extends BaseController
     {
         if (Admin::isLogin()) {
             Session::forget('admin');
+
             return response()->json(['status' => 1]);
         }
 

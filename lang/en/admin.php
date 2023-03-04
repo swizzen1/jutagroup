@@ -5,9 +5,9 @@ return [
     'menu' => [
         'index' => 'Home',
         'about' => 'About us',
-        'terms' => 'Terms'
-    ],  
-    
+        'terms' => 'Terms',
+    ],
+
     // ოპერაციები
     'add' => 'Add',
     'create' => 'Create',
@@ -30,7 +30,7 @@ return [
     'compose' => 'Compose',
     'filter' => 'Filter',
     'clear' => 'Clear',
-    
+
     // ველები
     'sort' => '#',
     'status' => 'Status',
@@ -68,10 +68,10 @@ return [
     'delivery_price' => 'Delivery price',
     'delivery' => 'Delivery',
     'register_date' => 'Register date',
-    'category' => 'Category', 
+    'category' => 'Category',
     'categories' => 'Categories',
-    'parent_category' => 'Parent Category', 
-    'main_category' => 'First level category', 
+    'parent_category' => 'Parent Category',
+    'main_category' => 'First level category',
     'brand' => 'Brand',
     'price' => 'Price',
     'old_price' => 'Old price',
@@ -103,7 +103,7 @@ return [
     'show_on_index' => 'On index',
     'user_agent' => 'User agent',
     'time' => 'Time',
-    
+
     // მომხმარებელი
     'first_name' => 'Name',
     'last_name' => 'Surname',
@@ -115,7 +115,7 @@ return [
     'instagram' => 'Instagram',
     'twitter' => 'Twitter',
     'youtube' => 'Youtube',
-    
+
     // სხვადასხვა
     'check' => 'შემოწმება',
     'check_model' => 'Check Modul',
@@ -183,7 +183,7 @@ return [
     'expires_at' => 'Expires at',
     'module' => 'Module',
     'cache_cleared' => 'Cache was successfully cleared',
-    
+
     // სტატისტიკური მონაცემების გრაფიკები
     'charts' => [
         'totals_by_days' => 'Totals amounts by days',
@@ -193,8 +193,8 @@ return [
         'unit_data' => 'Units',
         'count_percents_by_districts' => 'Order counts by districts (%)',
         'amount_percents_by_districts' => 'Order amounts by districts (%)',
-    ],  
-    
+    ],
+
     // მარშრუტრები
     'routes' => [
         'Admins' => 'Administrators',
@@ -222,7 +222,6 @@ return [
         'Keywords' => 'User search',
         'Logs' => 'Log',
         'Changelogs' => 'Change log',
-        'Operationlogs' => 'Operation log'
-    ]   
+        'Operationlogs' => 'Operation log',
+    ],
 ];
-

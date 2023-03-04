@@ -1,43 +1,43 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\BaseController;
-use App\Http\Controllers\Admin\LogsController;
-use App\Http\Controllers\Admin\NewsController;
-use App\Http\Controllers\Admin\SeosController;
-use App\Http\Controllers\Admin\TagsController;
-use App\Http\Controllers\Admin\LoginController;
-use App\Http\Controllers\Admin\SalesController;
-use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Front\IndexController;
+use App\Http\Controllers\Admin\ActionLogController;
+use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Admin\AdminsController;
+use App\Http\Controllers\Admin\BaseController;
 use App\Http\Controllers\Admin\BrandsController;
+use App\Http\Controllers\Admin\ChangelogsController;
+use App\Http\Controllers\Admin\ConfigurationsController;
+use App\Http\Controllers\Admin\CouponsController;
+use App\Http\Controllers\Admin\DistrictsController;
+use App\Http\Controllers\Admin\InformationController;
+use App\Http\Controllers\Admin\KeywordsController;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\LogsController;
+use App\Http\Controllers\Admin\MessagesController;
+use App\Http\Controllers\Admin\NewsCategoriesController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\NewsesController;
 use App\Http\Controllers\Admin\OrdersController;
-use App\Http\Controllers\Admin\CouponsController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\ReviewsController;
-use App\Http\Controllers\Admin\SlidersController;
-use App\Http\Controllers\Admin\KeywordsController;
-use App\Http\Controllers\Admin\MessagesController;
-use App\Http\Controllers\Admin\ProductsController;
-use App\Http\Controllers\Admin\ActionLogController;
-use App\Http\Controllers\Admin\DistrictsController;
-use App\Http\Controllers\Admin\TextpagesController;
-use App\Http\Controllers\Admin\AdminIndexController;
-use App\Http\Controllers\Admin\ChangelogsController;
-use App\Http\Controllers\Admin\SubscribesController;
-use App\Http\Controllers\Admin\InformationController;
 use App\Http\Controllers\Admin\PhotoGalleryController;
-use App\Http\Controllers\Admin\ConfigurationsController;
-use App\Http\Controllers\Admin\NewsCategoriesController;
-
 use App\Http\Controllers\Admin\ProductCategoriesController;
-use App\Http\Controllers\client\IndexController as ClientIndexController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\ReviewsController;
+use App\Http\Controllers\Admin\SalesController;
+use App\Http\Controllers\Admin\SeosController;
+use App\Http\Controllers\Admin\SlidersController;
+use App\Http\Controllers\Admin\SubscribesController;
+use App\Http\Controllers\Admin\TagsController;
+use App\Http\Controllers\Admin\TextpagesController;
+use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Front\IndexController;
 use App\Http\Livewire\Client\About\AboutIndex;
 use App\Http\Livewire\Client\Contact\ContactIndex;
 use App\Http\Livewire\Client\Home\Index;
+use App\Models\User;
+use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,6 +54,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::get('/', Index::class)->name('clientIndex');
     Route::get('/contact', ContactIndex::class)->name('clientContact');
     Route::get('/about', AboutIndex::class)->name('clientAbout');
+
+    Route::get('/permissions', function () {
+        return User::roles();
+    });
 });
 
 Route::get('/admin/login', [LoginController::class, 'index'])->middleware('AdminLogin')->name('LoginPageAdmin');
@@ -61,9 +65,7 @@ Route::post('/admin/singin', [LoginController::class, 'singin'])->middleware('Ad
 Route::post('/admin/logout', [LoginController::class, 'logout'])->name('LogoutAdmin');
 
 Route::middleware(['admin', 'check_permission'])->group(function () {
-
     Route::prefix('admin')->group(function () {
-
         // ადმინისტრატორის პანელის მთავარი გვერდი
         Route::get('/', [AdminIndexController::class, 'index'])->name('AdminMainPage');
 
@@ -96,7 +98,6 @@ Route::middleware(['admin', 'check_permission'])->group(function () {
         });
 
         Route::prefix('products')->group(function () {
-
             Route::get('/', [ProductsController::class, 'index'])->name('ProductsIndex');
 
             // პროდუქტი
@@ -148,7 +149,6 @@ Route::middleware(['admin', 'check_permission'])->group(function () {
         });
 
         Route::prefix('newses')->group(function () {
-
             Route::get('/', [NewsesController::class, 'index'])->name('Newses');
 
             // სიხლეები
@@ -220,7 +220,6 @@ Route::middleware(['admin', 'check_permission'])->group(function () {
 
         // ამ გვერდებზე შესვლის უფლება აქვს მხოლოდ სუპერადმინს
         Route::middleware('check_if_super')->group(function () {
-
             // ფასდაკლებები
             Route::prefix('/coupons')->group(function () {
                 Route::get('/', [CouponsController::class, 'index'])->name('Coupons');
@@ -277,7 +276,6 @@ Route::middleware(['admin', 'check_permission'])->group(function () {
 
             // ჟურნალი
             Route::prefix('logs')->group(function () {
-
                 Route::get('/', [LogsController::class, 'index'])->name('Logs');
 
                 Route::prefix('changelog')->group(function () {
@@ -303,4 +301,4 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

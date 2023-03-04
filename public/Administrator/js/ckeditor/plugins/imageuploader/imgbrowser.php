@@ -13,38 +13,38 @@ $link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $root = "http://$_SERVER[HTTP_HOST]";
 
 // checking lang value
-if(isset($_COOKIE['sy_lang'])) {
+if (isset($_COOKIE['sy_lang'])) {
     $load_lang_code = $_COOKIE['sy_lang'];
 } else {
-    $load_lang_code = "en";
+    $load_lang_code = 'en';
 }
 
 // including lang files
 switch ($load_lang_code) {
-    case "en":
-        require(__DIR__ . '/lang/en.php');
+    case 'en':
+        require __DIR__.'/lang/en.php';
         break;
-    case "pl":
-        require(__DIR__ . '/lang/pl.php');
+    case 'pl':
+        require __DIR__.'/lang/pl.php';
         break;
 }
 
 // Including the plugin config file, don't delete the following row!
-require(__DIR__ . '/pluginconfig.php');
+require __DIR__.'/pluginconfig.php';
 // Including the functions file, don't delete the following row!
-require(__DIR__ . '/function.php');
+require __DIR__.'/function.php';
 // Including the check_permission file, don't delete the following row!
-require(__DIR__ . '/check_permission.php');
+require __DIR__.'/check_permission.php';
 
-if ($username == "" and $password == "") {
-    if(!isset($_SESSION['username'])){
-        include(__DIR__ . '/new.php');
-        exit;	
+if ($username == '' and $password == '') {
+    if (! isset($_SESSION['username'])) {
+        include __DIR__.'/new.php';
+        exit;
     }
 } else {
-    if(!isset($_SESSION['username'])){
-        include(__DIR__ . '/loginindex.php');
-        exit;	
+    if (! isset($_SESSION['username'])) {
+        include __DIR__.'/loginindex.php';
+        exit;
     }
 }
 
@@ -93,9 +93,9 @@ if ($username == "" and $password == "") {
     <img onclick="Cookies.remove('qEditMode');window.close();" src="img/cd-icon-close-grey.png" class="headerIconRight iconHover">
     <img onclick="reloadImages();" src="img/cd-icon-refresh.png" class="headerIconRight iconHover">
     <img onclick="uploadImg();" src="img/cd-icon-upload-grey.png" class="headerIconCenter iconHover">
-    <?php if($show_settings): ?>
+    <?php if ($show_settings) { ?>
     <img onclick="pluginSettings();" src="img/cd-icon-settings.png" class="headerIconRight iconHover">
-    <?php endif; ?>
+    <?php } ?>
 </div>
     
 <div id="editbar">
@@ -119,9 +119,9 @@ if ($username == "" and $password == "") {
 </div>
 
 <p class="folderInfo"><?php echo $imagebrowser2; ?> <span id="finalcount"></span> <?php echo $imagebrowser3; ?> - <span id="finalsize"></span>
-    <?php if($file_style == "block") { ?>
+    <?php if ($file_style == 'block') { ?>
         <img title="List" src="img/cd-icon-list.png" class="headerIcon floatRight" onclick="window.location.href = 'pluginconfig.php?file_style=list';">
-    <?php } elseif($file_style == "list") { ?>
+    <?php } elseif ($file_style == 'list') { ?>
         <img title="Block" src="img/cd-icon-block.png" class="headerIcon floatRight" onclick="window.location.href = 'pluginconfig.php?file_style=block';">
         <img title="Quick Edit" id="qEditBtnOpen" src="img/cd-icon-qedit.png" class="headerIcon floatRight" onclick="toogleQEditMode();">
         <img title="Quick Edit" id="qEditBtnDone" src="img/cd-icon-done.png" class="headerIcon floatRight" onclick="toogleQEditMode();">
@@ -131,18 +131,18 @@ if ($username == "" and $password == "") {
 <div id="files">
     <?php
     loadImages();
-    ?>
+?>
 </div>
 
     
-<?php if($file_style == "block") { ?>
+<?php if ($file_style == 'block') { ?>
     <div class="fileDiv" onclick="window.location.href = 'http://imageuploaderforckeditor.altervista.org';">
         <div class="imgDiv">Image Uploader for CKEditor</div>
         <p class="fileDescription">&copy; 2016 by Moritz Maleck</p>
         <p class="fileTime">imageuploaderforckeditor.altervista.org</p>
         <p class="fileTime">180 KB</p>
     </div>
-<?php } elseif($file_style == "list") { ?>
+<?php } elseif ($file_style == 'list') { ?>
     <div class="fullWidthFileDiv" onclick="window.location.href = 'http://imageuploaderforckeditor.altervista.org';">
         <div class="fullWidthimgDiv"><img class="fullWidthfileImg lazy" data-original="img/cd-icon-credits.png"></div>
         <p class="fullWidthfileDescription">Image Uploader for CKEditor</p>
@@ -174,7 +174,7 @@ if ($username == "" and $password == "") {
     </form>
 </div>
 
-<?php if($show_settings) { ?>
+<?php if ($show_settings) { ?>
     <div id="settingsDiv" class="lightbox popout">
         <div class="buttonBar">
             <button class="headerBtn" onclick="$('#settingsDiv').hide(); $('#background3').slideUp(250, 'swing');"><img src="img/cd-icon-close.png" class="headerIcon"></button>
@@ -188,8 +188,8 @@ if ($username == "" and $password == "") {
         <!--path history-->
         <p class="settingsh3 saveUploadPathP"><?php echo $panelsettings3; ?></p>
         <?php
-        pathHistory();
-        ?>
+    pathHistory();
+    ?>
         <!--cancel btn-->
         <button class="headerBtn greyBtn saveUploadPathA" id="pathCancel"><?php echo $buttons5; ?></button>
         <!--save btn-->
@@ -197,22 +197,22 @@ if ($username == "" and $password == "") {
 
         <br><h3 class="settingsh3"><?php echo $panelsettings4; ?></h3>
         <!--Hide/show news section-->
-        <?php if($news_sction == "yes"){ ?>
+        <?php if ($news_sction == 'yes') { ?>
             <p class="uploadP" onclick="disableNews()"><img src="http://www.maleck.org/imageuploader/img/hide.png" class="headerIcon"> <?php echo $panelsettings21; ?></p>
-        <?php } elseif($news_sction == "no") { ?>
+        <?php } elseif ($news_sction == 'no') { ?>
             <p class="uploadP" onclick="enableNews()"><img src="http://www.maleck.org/imageuploader/img/show.png" class="headerIcon"> <?php echo $panelsettings22; ?></p>
         <?php } ?>
         <!--Hide/show file extension-->
-        <?php if($file_extens == "yes"){ ?>
+        <?php if ($file_extens == 'yes') { ?>
             <p class="uploadP" onclick="extensionSettings('no');"><img src="img/cd-icon-hideext.png" class="headerIcon"> <?php echo $panelsettings5; ?></p>
-        <?php } elseif($file_extens == "no") { ?>
+        <?php } elseif ($file_extens == 'no') { ?>
             <p class="uploadP" onclick="extensionSettings('yes');"><img src="img/cd-icon-showext.png" class="headerIcon"> <?php echo $panelsettings6; ?></p>
         <?php } ?>
         <!--change language-->
         <p class="uploadP" onclick="openLangPanel();"><img src="img/cd-icon-translate.png" class="headerIcon"> <?php echo $panelsettings20; ?></p>
 
         <!--show if password is enabled-->
-        <?php if($_SESSION["username"] != "disabled_pw"){ ?>
+        <?php if ($_SESSION['username'] != 'disabled_pw') { ?>
             <br><h3 class="settingsh3"><?php echo $panelsettings7; ?></h3>
             <!--logout-->
             <p class="uploadP" onclick="logOut();"><img src="img/cd-icon-logout.png" class="headerIcon"> <?php echo $panelsettings8; ?></p>
@@ -259,9 +259,9 @@ if ($username == "" and $password == "") {
 <!--Noscript part if js is disabled-->
 <noscript> <div class="noscript"> <div id="folderError" class="noscriptContainer popout"> <b><?php echo $alerts1; ?></b><br><br><?php echo $alerts5; ?> <a href="http://www.enable-javascript.com/" target="_blank"><?php echo $alerts6; ?></a><br><br><?php echo $alerts4; ?> </div></div></noscript>
     
-<?php   
+<?php
 // Including the language file, don't delete the following row!
-require(__DIR__ . '/lang/lang.php');
+require __DIR__.'/lang/lang.php';
 ?>
 
 </body>

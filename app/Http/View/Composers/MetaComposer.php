@@ -2,12 +2,10 @@
 
 namespace App\Http\View\Composers;
 
-use App\Repositories\UserRepository;
 use Illuminate\View\View;
 
 class MetaComposer
 {
-
     /**
      * Bind data to the view.
      */

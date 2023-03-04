@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Message extends Model {
-    
-    protected $fillable = array('name', 'email','website','message');
+class Message extends Model
+{
+    protected $fillable = ['name', 'email', 'website', 'message'];
 
-    public static function allItems() 
+    public static function allItems()
     {
-        return Message::orderBy('id','DESC')->paginate(10);
+        return Message::orderBy('id', 'DESC')->paginate(10);
     }
 }

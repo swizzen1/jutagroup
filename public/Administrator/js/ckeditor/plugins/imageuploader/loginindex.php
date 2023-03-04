@@ -1,18 +1,18 @@
 <?php
 // checking lang value
-if(isset($_COOKIE['sy_lang'])) {
+if (isset($_COOKIE['sy_lang'])) {
     $load_lang_code = $_COOKIE['sy_lang'];
 } else {
-    $load_lang_code = "en";
+    $load_lang_code = 'en';
 }
 
 // including lang files
 switch ($load_lang_code) {
-    case "en":
-        require(__DIR__ . '/lang/en.php');
+    case 'en':
+        require __DIR__.'/lang/en.php';
         break;
-    case "pl":
-        require(__DIR__ . '/lang/pl.php');
+    case 'pl':
+        require __DIR__.'/lang/pl.php';
         break;
 }
 ?>
